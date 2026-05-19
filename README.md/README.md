@@ -29,3 +29,5 @@ File ini tidak menyertakan credentials. Semua API harus diisi ulang di n8n masin
 
 ---
 Dibuat untuk kebutuhan Matkul Jaringan Syaraf Tiruan (JST) dan implementasi ke Dosennya Langsung.
+
+Sekian dan Terimakasih.
