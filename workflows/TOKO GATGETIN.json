@@ -1,0 +1,1490 @@
+{
+  "name": "TOKO GATGETIN",
+  "nodes": [
+    {
+      "parameters": {
+        "value1": "={{ $json.response }}",
+        "rules": {
+          "rules": []
+        },
+        "fallbackOutput": 1
+      },
+      "id": "1d586caa-d785-442b-bd7b-72c17841e61d",
+      "name": "Switch Intent",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 1,
+      "position": [
+        544,
+        2000
+      ]
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "10Ml-wodkp5D0iSZtlo_vcUcyxtHmtqX8HGyDihySzEQ",
+          "mode": "list",
+          "cachedResultName": "Toko Ai",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/10Ml-wodkp5D0iSZtlo_vcUcyxtHmtqX8HGyDihySzEQ/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Produk",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/10Ml-wodkp5D0iSZtlo_vcUcyxtHmtqX8HGyDihySzEQ/edit#gid=0"
+        },
+        "filtersUI": {
+          "values": []
+        },
+        "combineFilters": "=",
+        "options": {}
+      },
+      "id": "ceee8d51-f056-4edd-ab71-3203ebd4338f",
+      "name": "Read Produk",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [
+        768,
+        1936
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "lsg4ShbCTY4qKxrG",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Switch Intent').item.json.chat_id }}",
+        "text": "Ketik: pesan [nama_produk] [jumlah]",
+        "additionalFields": {}
+      },
+      "id": "5f2801ed-250a-48b4-a395-f6775e7f8cc4",
+      "name": "Balas Produk",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1,
+      "position": [
+        1216,
+        1936
+      ],
+      "webhookId": "8b502bb0-3be5-456d-8e3a-d177f1ea97b8",
+      "credentials": {
+        "telegramApi": {
+          "id": "xDFyGqj3QFyeCfmL",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "10Ml-wodkp5D0iSZtlo_vcUcyxtHmtqX8HGyDihySzEQ",
+          "mode": "list",
+          "cachedResultName": "Toko Ai",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/10Ml-wodkp5D0iSZtlo_vcUcyxtHmtqX8HGyDihySzEQ/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Produk",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/10Ml-wodkp5D0iSZtlo_vcUcyxtHmtqX8HGyDihySzEQ/edit#gid=0"
+        },
+        "options": {}
+      },
+      "id": "7eaad565-9040-46e0-a1bd-d7b4afcf0047",
+      "name": "Read Produk (Pesan)",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [
+        768,
+        2128
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "lsg4ShbCTY4qKxrG",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "10Ml-wodkp5D0iSZtlo_vcUcyxtHmtqX8HGyDihySzEQ",
+          "mode": "list",
+          "cachedResultName": "Toko Ai",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/10Ml-wodkp5D0iSZtlo_vcUcyxtHmtqX8HGyDihySzEQ/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Produk",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/10Ml-wodkp5D0iSZtlo_vcUcyxtHmtqX8HGyDihySzEQ/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [
+            "Nama_Produk"
+          ],
+          "schema": [
+            {
+              "id": "Nama_Produk",
+              "displayName": "Nama_Produk",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Stok",
+              "displayName": "Stok",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Harga",
+              "displayName": "Harga",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "76ef748c-b43b-421f-8ab5-436dc78dc70b",
+      "name": "Update Stok",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [
+        992,
+        2128
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "lsg4ShbCTY4qKxrG",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "10Ml-wodkp5D0iSZtlo_vcUcyxtHmtqX8HGyDihySzEQ",
+          "mode": "list",
+          "cachedResultName": "Toko Ai",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/10Ml-wodkp5D0iSZtlo_vcUcyxtHmtqX8HGyDihySzEQ/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 233874230,
+          "mode": "list",
+          "cachedResultName": "Pesanan",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/10Ml-wodkp5D0iSZtlo_vcUcyxtHmtqX8HGyDihySzEQ/edit#gid=233874230"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "tanggal": "07-05-2026",
+            "nama_user": "aji",
+            "nama_produk": "gula",
+            "jumlah": "9",
+            "total": "1"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "tanggal",
+              "displayName": "tanggal",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "nama_user",
+              "displayName": "nama_user",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "nama_produk",
+              "displayName": "nama_produk",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "jumlah",
+              "displayName": "jumlah",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "total",
+              "displayName": "total",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "c3649db1-271d-4b7f-ac25-41c79d16fff5",
+      "name": "Simpan Pesanan",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [
+        1216,
+        2128
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "lsg4ShbCTY4qKxrG",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Switch Intent').item.json.chat_id }}",
+        "text": "Pesanan dicatat ✅",
+        "additionalFields": {}
+      },
+      "id": "7594d9c9-5a38-40a4-aecc-772240033fbe",
+      "name": "Konfirmasi User",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1,
+      "position": [
+        1664,
+        2128
+      ],
+      "webhookId": "f938c255-3bdd-4aa1-8e00-fef6ef341c95",
+      "credentials": {
+        "telegramApi": {
+          "id": "xDFyGqj3QFyeCfmL",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "=6069142791",
+        "text": "Ada pesanan baru masuk.",
+        "additionalFields": {}
+      },
+      "id": "853e4cc4-3e9e-4f7b-bbad-65a5fcfb2459",
+      "name": "Notif Admin",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1,
+      "position": [
+        1888,
+        2128
+      ],
+      "webhookId": "d7d2d1ef-82ec-4a7d-a568-66b12062598c",
+      "credentials": {
+        "telegramApi": {
+          "id": "xDFyGqj3QFyeCfmL",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "id": "d4928394-8e43-4028-8424-292477ad7e75",
+      "name": "Telegram Trigger1",
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1,
+      "position": [
+        -704,
+        2032
+      ],
+      "webhookId": "bbe99b5e-2756-46c7-b586-90789eb7d3c3",
+      "credentials": {
+        "telegramApi": {
+          "id": "xDFyGqj3QFyeCfmL",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "string": [
+            {
+              "name": "chat_id",
+              "value": "={{$json.message.chat.id}}"
+            },
+            {
+              "name": "nama_user",
+              "value": "={{$json.message.from.first_name}}"
+            },
+            {
+              "name": "Pesan",
+              "value": "={{$json.message.text}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "176c5659-029e-4220-be3d-e5b10816ff83",
+      "name": "Set Data1",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        -480,
+        2032
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "let text = \"Daftar Produk:\\n\\n\";\n\nfor (const item of items) {\n\n  const nama = item.json[\"Nama_Produk\"];\n  const stok = item.json[\"Stok\"];\n  const harga = item.json[\"Harga\"];\n\n  text += `• ${nama} | stok: ${stok} | harga: ${harga}\\n`;\n}\n\nreturn [\n  {\n    json: {\n      text: text\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        992,
+        1936
+      ],
+      "id": "7d5fb9a0-5998-420c-ab71-ca1794ec005e",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "jsCode": "let text = \"Daftar Produk:\\n\\n\";\n\nfor (const item of items) {\n\n  const nama = item.json[\"Nama_Produk\"];\n  const stok = item.json[\"Stok\"];\n  const harga = item.json[\"Harga\"];\n\n  text += `• ${nama} | stok: ${stok} | harga: ${harga}\\n`;\n}\n\nreturn [\n  {\n    json: {\n      text: text\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1440,
+        2128
+      ],
+      "id": "6a90184f-5ecb-4386-b402-030c4573b8be",
+      "name": "Code in JavaScript2"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "dbb49e6f-9d6c-473c-84e3-7106d2cb9126",
+              "leftValue": "={{ $json.pesan.toLowerCase().includes('produk') || $json.pesan.toLowerCase().includes('pesan') }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        -256,
+        2032
+      ],
+      "id": "6da92f5b-91d3-42bc-a6fd-d5ce0c643842",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "model": "llama-3.1-8b-instant",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGroq",
+      "typeVersion": 1,
+      "position": [
+        48,
+        2256
+      ],
+      "id": "0853b411-2427-4bd9-9a63-6f76bb2c6bc8",
+      "name": "Groq Chat Model",
+      "credentials": {
+        "groqApi": {
+          "id": "8rvaJClH7PTpH6Zn",
+          "name": "Groq account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $('Telegram Trigger1').item.json.message.text }}",
+        "options": {
+          "systemMessage": "=Basik prompt AI CS dengan n8n\n\n\nKamu adalah Bang CS, customer service AI dari Bang Store.\nGunakan bahasa Indonesia yang santai dan panggil customer dengan sapaan 'kak'.{{ $('Telegram Trigger1').item.json.message.from.first_name }}\nToko kami bernama Bang Store.\n\nAlamat toko:\nJl. A Yani KM35, Banjarbaru\n\nSocial media:\nIG: https://instagram.com/bangtutorial\nYouTube: (Sertakan URL valid jika ada, atau hapus baris ini jika tidak ada channel YouTube yang valid)\n\nURL order produk:\nShopee: https://shopee.co.id/bangtutorial\nTokopedia: https://tokopedia.com/bangtutorial\n\nKontak WA untuk order barang:\nWhatsApp: 08123456789\n\nTugasmu adalah:\n1. Sapa customer dengan \"Halo kak\" HANYA pada awal percakapan atau jika customer memulai topik baru/sapaan pembuka. Untuk balasan selanjutnya dalam satu alur percakapan, langsung berikan informasi tanpa sapaan pembuka lagi.\n2. Menjawab pertanyaan umum tentang toko Bang Store, alamat, social media, atau informasi kontak WhatsApp.\n3. Jika customer bertanya stok barang, maka jawab hanya seputar stok barangnya ready atau kosong.\n4. Jika customer menanyakan harga, berikan harga produknya (jika data harga tersedia, jika tidak, arahkan ke platform order).\n5. Jika pertanyaan tentang stok, gunakan \"get_stock_data\" tool untuk mengecek data stok di Google Sheets.\n6. Jika pertanyaan seputar order barang atau cara beli, arahkan ke URL order produk yang sudah disediakan, dan berikan juga info kontak WhatsApp.\n7. Berikan respon yang rapi dan mudah dibaca. Jangan gunakan format teks seperti bold atau italic, dan untuk link sertakan URL lengkapnya secara langsung (jangan gunakan format Markdown [teks](url)).\n8. Di akhir setiap balasan, tawarkan bantuan lain dengan kalimat yang bervariasi dan santai.\n\nCatatan untuk stok:\n1. Jika kamu menggunakan tool \"get_stock_data\", berikan hasil pengecekan stoknya ready atau kosong.\n2. Jika tidak menemukan barang yang ditanyakan di data stok, informasikan bahwa barang tidak ditemukan atau tanyakan apakah nama barangnya sudah benar.\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        -32,
+        2032
+      ],
+      "id": "3a438fdb-0f6a-4663-ac6e-9a6455736af8",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger1').item.json.message.chat.id }}",
+        "text": "={{ $json.output }}",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        320,
+        2032
+      ],
+      "id": "25f02138-bb22-484e-8559-c5fe42ce1a1a",
+      "name": "costemer",
+      "webhookId": "8485c9b0-dd91-4bc7-9788-665a84841beb",
+      "credentials": {
+        "telegramApi": {
+          "id": "xDFyGqj3QFyeCfmL",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.Pesan }}",
+        "options": {
+          "systemMessage": "=You are a helpfBasik prompt AI CS dengan n8n\n\n\nKamu adalah Bang CS, customer service AI dari Gatgetin.\nGunakan bahasa Indonesia yang santai dan panggil customer dengan sapaan 'kak'{{ $('Set Data').item.json.nama_user }}.\nToko kami bernama Gatgetin.\n\nAlamat toko:\nJl. Gedong 1 Depan Gedung Unindra\n\nSocial media:\nIG: https://instagram.com/Gatgetin\nYouTube: (Sertakan URL valid jika ada, atau hapus baris ini jika tidak ada channel YouTube yang valid)\n\nURL order produk:\nShopee: https://shopee.co.id/Gatgetin\nTokopedia: https://tokopedia.com/Gatgetin\n\nKontak WA untuk order barang:\nWhatsApp: 0981726667\n\nTugasmu adalah:\n1. Sapa customer dengan \"Halo kak {{ $('Set Data').item.json.nama_user }}\". HANYA pada awal percakapan atau jika customer memulai topik baru/sapaan pembuka. Untuk balasan selanjutnya dalam satu alur percakapan, langsung berikan informasi tanpa sapaan pembuka lagi.\n2. Menjawab pertanyaan umum tentang toko Gatgetin, alamat, social media, atau informasi kontak WhatsApp.\n3. Jika customer bertanya stok barang, maka jawab hanya seputar stok barangnya ready atau kosong.\n4. Jika customer menanyakan harga, berikan harga produknya (jika data harga tersedia, jika tidak, arahkan ke platform order).\n5. Jika pertanyaan tentang stok, gunakan \"Stok Semua Barang Produk\" tool untuk mengecek data stok di Google Sheets.\n6. Jika pertanyaan seputar order barang atau cara beli, arahkan ke URL order produk yang sudah disediakan, dan berikan juga info kontak WhatsApp.\n7. Berikan respon yang rapi dan mudah dibaca. Jangan gunakan format teks seperti bold atau italic, dan untuk link sertakan URL lengkapnya secara langsung (jangan gunakan format Markdown [teks](url)).\n8. Di akhir setiap balasan, tawarkan bantuan lain dengan kalimat yang bervariasi dan santai.\n\nCatatan untuk stok:\n1. Jika kamu menggunakan tool \"Stok Semua Barang Produk\", berikan hasil pengecekan stoknya ready atau kosong.\n2. Jika tidak menemukan barang yang ditanyakan di data stok, informasikan bahwa barang tidak ditemukan atau tanyakan apakah nama barangnya sudah benar.\nul assistant"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        32,
+        2880
+      ],
+      "id": "c4c34ab1-5f72-4552-8c14-5aa39ffed33e",
+      "name": "AI Agent1"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1M7e3pJ-zn0VVjFx5X5dl1Y6XnKJJASZ10Jvyycnfx_U",
+          "mode": "list",
+          "cachedResultName": "stok gatgetin",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1M7e3pJ-zn0VVjFx5X5dl1Y6XnKJJASZ10Jvyycnfx_U/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1M7e3pJ-zn0VVjFx5X5dl1Y6XnKJJASZ10Jvyycnfx_U/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        224,
+        3104
+      ],
+      "id": "d0ab8cd9-7401-42b4-bca7-56d6071b32ba",
+      "name": "Stok Semua Barang Produk",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "lsg4ShbCTY4qKxrG",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('BOT Telegram').item.json.message.chat.id }}",
+        "text": "={{ $json.output }}",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        432,
+        2880
+      ],
+      "id": "3efdc34e-9836-4127-b850-a4822d541abc",
+      "name": "Pelanggan",
+      "webhookId": "e06ebcc0-746f-405e-9f7b-ebe8b91f43f8",
+      "credentials": {
+        "telegramApi": {
+          "id": "xDFyGqj3QFyeCfmL",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $('Set Data').item.json.chat_id }}",
+        "contextWindowLength": 10
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        96,
+        3104
+      ],
+      "id": "15daf588-b4fb-4a13-bf50-8a1220786e96",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "model": "openai/gpt-oss-safeguard-20b",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGroq",
+      "typeVersion": 1,
+      "position": [
+        -32,
+        3104
+      ],
+      "id": "06a29f25-dff7-4b4e-80c1-d67a61e35ddd",
+      "name": "AI",
+      "credentials": {
+        "groqApi": {
+          "id": "8rvaJClH7PTpH6Zn",
+          "name": "Groq account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "id": "add934a4-c27f-4731-9a88-7ff3d55d534a",
+      "name": "BOT Telegram",
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1,
+      "position": [
+        -704,
+        2736
+      ],
+      "webhookId": "bbe99b5e-2756-46c7-b586-90789eb7d3c3",
+      "credentials": {
+        "telegramApi": {
+          "id": "xDFyGqj3QFyeCfmL",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1M7e3pJ-zn0VVjFx5X5dl1Y6XnKJJASZ10Jvyycnfx_U",
+          "mode": "list",
+          "cachedResultName": "stok gatgetin",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1M7e3pJ-zn0VVjFx5X5dl1Y6XnKJJASZ10Jvyycnfx_U/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1M7e3pJ-zn0VVjFx5X5dl1Y6XnKJJASZ10Jvyycnfx_U/edit#gid=0"
+        },
+        "filtersUI": {
+          "values": []
+        },
+        "options": {}
+      },
+      "id": "eb306872-cb28-47f5-921a-62110bb4490f",
+      "name": "Read Produk (Pesan)1",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [
+        96,
+        2592
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "lsg4ShbCTY4qKxrG",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1M7e3pJ-zn0VVjFx5X5dl1Y6XnKJJASZ10Jvyycnfx_U",
+          "mode": "list",
+          "cachedResultName": "stok gatgetin",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1M7e3pJ-zn0VVjFx5X5dl1Y6XnKJJASZ10Jvyycnfx_U/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1M7e3pJ-zn0VVjFx5X5dl1Y6XnKJJASZ10Jvyycnfx_U/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Nama Produk": "={{ $('Read Produk (Pesan)1').item.json['Nama Produk'] }}",
+            "Model": "={{ $('Read Produk (Pesan)1').item.json.Model }}",
+            "Warna": "={{ $('Read Produk (Pesan)1').item.json.Warna }}",
+            "Stok": "={{ $json.stok_baru }}",
+            "Harga": "={{ $('Read Produk (Pesan)1').item.json.Harga }}",
+            "row_number": "=1"
+          },
+          "matchingColumns": [
+            "Nama Produk"
+          ],
+          "schema": [
+            {
+              "id": "Nama Produk",
+              "displayName": "Nama Produk",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Model",
+              "displayName": "Model",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Warna",
+              "displayName": "Warna",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Stok",
+              "displayName": "Stok",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Harga",
+              "displayName": "Harga",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "ad4aa9c0-1784-4e61-93a7-2eb6af5e1bf6",
+      "name": "Update Stok1",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [
+        656,
+        2592
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "lsg4ShbCTY4qKxrG",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1M7e3pJ-zn0VVjFx5X5dl1Y6XnKJJASZ10Jvyycnfx_U",
+          "mode": "list",
+          "cachedResultName": "stok gatgetin",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1M7e3pJ-zn0VVjFx5X5dl1Y6XnKJJASZ10Jvyycnfx_U/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1336126147,
+          "mode": "list",
+          "cachedResultName": "Sheet2",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1M7e3pJ-zn0VVjFx5X5dl1Y6XnKJJASZ10Jvyycnfx_U/edit#gid=1336126147"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Chat ID": "={{ $('Set Data').item.json.chat_id }}",
+            "Nama Customer": "={{ $('Set Data').item.json.nama_user }}",
+            "Nama Produk": "={{ $json['Nama Produk'] }}",
+            "Model": "={{ $json.Model }}",
+            "Warna": "={{ $json.Warna }}",
+            "Status": "Pesanan Masuk",
+            "Tanggal": "={{ $now.format('yyyy-MM-dd')}}",
+            "Jumlah": "=1",
+            "Harga Satuan": "={{ $json.Harga }}",
+            "Total": "=1"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Tanggal",
+              "displayName": "Tanggal",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Nama Customer",
+              "displayName": "Nama Customer",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Chat ID",
+              "displayName": "Chat ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Nama Produk",
+              "displayName": "Nama Produk",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Model",
+              "displayName": "Model",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Warna",
+              "displayName": "Warna",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Jumlah",
+              "displayName": "Jumlah",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Harga Satuan",
+              "displayName": "Harga Satuan",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Total",
+              "displayName": "Total",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "1eb1f61b-d6e4-45bf-9b5d-0c498586398d",
+      "name": "Simpan Pesanan1",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [
+        880,
+        2592
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "lsg4ShbCTY4qKxrG",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Set Data').item.json.chat_id }}",
+        "text": "Pesanan dicatat ✅",
+        "additionalFields": {}
+      },
+      "id": "b25f4ed9-a3da-4bda-aa76-d70d1702e3b0",
+      "name": "Konfirmasi User1",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1,
+      "position": [
+        1328,
+        2592
+      ],
+      "webhookId": "f938c255-3bdd-4aa1-8e00-fef6ef341c95",
+      "credentials": {
+        "telegramApi": {
+          "id": "xDFyGqj3QFyeCfmL",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "=6069142791",
+        "text": "Ada pesanan baru masuk.",
+        "additionalFields": {}
+      },
+      "id": "4151c1a2-8c00-4524-9157-d211626e9fd0",
+      "name": "Notif Admin1",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1,
+      "position": [
+        1552,
+        2592
+      ],
+      "webhookId": "d7d2d1ef-82ec-4a7d-a568-66b12062598c",
+      "credentials": {
+        "telegramApi": {
+          "id": "xDFyGqj3QFyeCfmL",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "let text = \"Daftar Produk:\\n\\n\";\n\nfor (const item of items) {\n\n  const nama = item.json[\"Nama_Produk\"];\n  const stok = item.json[\"Stok\"];\n  const harga = item.json[\"Harga\"];\n\n  text += `• ${nama} | stok: ${stok} | harga: ${harga}\\n`;\n}\n\nreturn [\n  {\n    json: {\n      text: text\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1104,
+        2592
+      ],
+      "id": "2815fe79-32de-4cb8-853a-554847c3d7f1",
+      "name": "Code in JavaScript3"
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "string": [
+            {
+              "name": "chat_id",
+              "value": "={{$json.message.chat.id}}"
+            },
+            {
+              "name": "nama_user",
+              "value": "={{$json.message.from.first_name}}"
+            },
+            {
+              "name": "Pesan",
+              "value": "={{$json.message.text}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "fa0ab371-7c86-48b3-bdb1-479e9b4503f9",
+      "name": "Set Data",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        -480,
+        2736
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "5aa6f6dd-dd59-4393-892b-0d2789730c75",
+              "name": "stok_baru",
+              "value": "={{ Number($json.Stok) - 1 }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        432,
+        2592
+      ],
+      "id": "c649f0af-94ee-4e6b-974f-a6a4acd961e6",
+      "name": "Data Pesanan Masuk"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "c28c9d10-a069-4768-a1c3-2fbcf82b8535",
+              "leftValue": "={{ $json.Pesan }}",
+              "rightValue": "=beli\n",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            },
+            {
+              "id": "133e0b9c-06f2-45a6-85df-fb92333d2a39",
+              "leftValue": "={{ $json.Pesan }}",
+              "rightValue": "pesan",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            },
+            {
+              "id": "9e726f7b-4f8c-47b4-b921-c02b6c963671",
+              "leftValue": "={{ $json.Pesan }}",
+              "rightValue": "order",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        -256,
+        2736
+      ],
+      "id": "395f1e0b-f305-4e17-8952-b4149d82f5d0",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "12ed15ae-7a61-4dce-b4d4-c246aaf37b77",
+                    "leftValue": "",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "e42c4209-1353-4124-8272-ea8e4df8ca80",
+                    "leftValue": "",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {
+          "fallbackOutput": 0,
+          "allMatchingOutputs": true
+        }
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [
+        -704,
+        2368
+      ],
+      "id": "91a76b93-ba80-4e67-b591-784d368ae2cd",
+      "name": "Switch"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Switch Intent": {
+      "main": [
+        [
+          {
+            "node": "Read Produk",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Read Produk (Pesan)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read Produk": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read Produk (Pesan)": {
+      "main": [
+        [
+          {
+            "node": "Update Stok",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Stok": {
+      "main": [
+        [
+          {
+            "node": "Simpan Pesanan",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simpan Pesanan": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Konfirmasi User": {
+      "main": [
+        [
+          {
+            "node": "Notif Admin",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram Trigger1": {
+      "main": [
+        [
+          {
+            "node": "Set Data1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Data1": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "Balas Produk",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript2": {
+      "main": [
+        [
+          {
+            "node": "Konfirmasi User",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Groq Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "costemer",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "costemer": {
+      "main": [
+        [
+          {
+            "node": "Switch Intent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent1": {
+      "main": [
+        [
+          {
+            "node": "Pelanggan",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Stok Semua Barang Produk": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "BOT Telegram": {
+      "main": [
+        [
+          {
+            "node": "Set Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Stok1": {
+      "main": [
+        [
+          {
+            "node": "Simpan Pesanan1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simpan Pesanan1": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Konfirmasi User1": {
+      "main": [
+        [
+          {
+            "node": "Notif Admin1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript3": {
+      "main": [
+        [
+          {
+            "node": "Konfirmasi User1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read Produk (Pesan)1": {
+      "main": [
+        [
+          {
+            "node": "Data Pesanan Masuk",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Data": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Data Pesanan Masuk": {
+      "main": [
+        [
+          {
+            "node": "Update Stok1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "Read Produk (Pesan)1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "AI Agent1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [],
+        []
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "718c4d54-4e6c-499c-b382-595dc162b3ac",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "956592bf169a9a479a0362e34b210a4bf97bdd99733e013e185ecf84d6c32f60"
+  },
+  "id": "hcG2jHa2g6vTUGIG",
+  "tags": []
+}
